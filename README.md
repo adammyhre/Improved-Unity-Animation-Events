@@ -13,6 +13,8 @@ This repository provides an enhanced and flexible system for managing **Animatio
 
 This system aims to improve the flexibility and control over Unity’s Animation Event system, making it easier to manage complex animation event scenarios in-game or during editor-time workflows.
 
+## YouTube
+
 [**Improved Animation Events in Unity**](https://youtu.be/XEDi7fUCQos?sub_confirmation=1)
 
 You can also check out my [YouTube channel](https://www.youtube.com/@git-amend?sub_confirmation=1) for more Unity content.
