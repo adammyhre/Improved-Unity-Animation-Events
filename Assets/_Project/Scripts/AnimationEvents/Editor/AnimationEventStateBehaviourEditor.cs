@@ -22,11 +22,13 @@ public class AnimationEventStateBehaviourEditor : Editor {
                 if (GUILayout.Button("Stop Preview")) {
                     EnforceTPose();
                     isPreviewing = false;
+                    AnimationMode.StopAnimationMode();
                 } else {
                     PreviewAnimationClip(stateBehaviour);
                 }
             } else if (GUILayout.Button("Preview")) {
                 isPreviewing = true;
+                AnimationMode.StartAnimationMode();
             }
 
             GUILayout.Label($"Previewing at {previewTime:F2}s", EditorStyles.helpBox);
@@ -40,9 +42,7 @@ public class AnimationEventStateBehaviourEditor : Editor {
 
         previewTime = stateBehaviour.triggerTime * previewClip.length;
 
-        AnimationMode.StartAnimationMode();
         AnimationMode.SampleAnimationClip(Selection.activeGameObject, previewClip, previewTime);
-        AnimationMode.StopAnimationMode();
     }
 
     bool Validate(AnimationEventStateBehaviour stateBehaviour, out string errorMessage) {
