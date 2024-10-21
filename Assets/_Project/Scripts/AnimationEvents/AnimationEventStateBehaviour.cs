@@ -6,9 +6,11 @@ public class AnimationEventStateBehaviour : StateMachineBehaviour {
     [Range(0f, 1f)] public float triggerTime;
     
     bool hasTriggered;
+    AnimationEventReceiver receiver;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         hasTriggered = false;
+        receiver = animator.GetComponent<AnimationEventReceiver>();
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -21,7 +23,6 @@ public class AnimationEventStateBehaviour : StateMachineBehaviour {
     }
 
     void NotifyReceiver(Animator animator) {
-        AnimationEventReceiver receiver = animator.GetComponent<AnimationEventReceiver>();
         if (receiver != null) {
             receiver.OnAnimationEventTriggered(eventName);
         }
