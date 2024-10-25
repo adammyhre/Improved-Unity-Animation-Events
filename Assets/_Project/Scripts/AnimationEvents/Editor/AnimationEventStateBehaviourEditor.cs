@@ -79,7 +79,7 @@ public class AnimationEventStateBehaviourEditor : Editor {
         previewClip = GetAnimationClipFromMotion(matchingState.state?.motion);
         if (previewClip == null)
         {
-            errorMessage = "No valid AnimationClip found for the current state";
+            errorMessage = "No valid AnimationClip found for the current state.";
             return false;
         }
 
