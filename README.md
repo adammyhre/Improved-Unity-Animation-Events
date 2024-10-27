@@ -2,16 +2,20 @@
 
 ![AnimationEvents](https://github.com/user-attachments/assets/ab3b9e80-1533-454b-b551-78ff8d92169f)
 
-This repository provides an enhanced and flexible system for managing **Animation Events** in Unity, with a focus on improving event configuration, previewing, and triggering during animation playback. The system builds on Unity's existing animation workflow and provides developers with more control over how events are handled and integrated.
+This repository offers a powerful, flexible system for managing **Animation Events** in Unity, with advanced capabilities for configuring, previewing, and controlling events during animation playback. It extends Unity's default animation workflow, giving developers greater control over animation events and their integration.
 
-## Key Features:
-- **Custom Animation Events**: Easily configure and trigger animation events based on a specific time (normalized between 0 and 1) during an animation state.
-- **Event Receiver**: A flexible event receiver component that allows animation events to trigger UnityEvents in a reusable and maintainable way.
-- **Inspector Preview Mode**: Preview animations directly in the Unity Editor's Scene view, allowing for a more efficient workflow.
-- **T-Pose Enforcement**: Quickly reset characters to their default T-pose for animation rigging and debugging.
-- **State Machine Behaviour Integration**: Events are managed via `StateMachineBehaviour`, allowing event triggers based on specific animation states.
+With this system, events can be triggered from any state in your Animator Controller, including **Blend Trees**, allowing precise control over when events fire during animations. The system also features a customizable event receiver component that links animation events to UnityEvents, making event handling more flexible and maintainable.
 
-This system aims to improve the flexibility and control over Unity’s Animation Event system, making it easier to manage complex animation event scenarios in-game or during editor-time workflows.
+## Key Features
+
+- **Custom Animation Events**: Configure and trigger animation events at specific, normalized times (0 to 1) within an animation state.
+- **Blend Tree Support**: Trigger events at the blend tree level, allowing precise event control when working with multiple animations.
+- **Event Receiver Component**: A reusable component that enables animation events to trigger UnityEvents, streamlining and maintaining event handling.
+- **Inspector Preview Mode (Scene View)**: Preview animations and blend trees *directly in the Scene view from the Unity Editor*, providing real-time visual feedback and dramatically improving workflow efficiency.
+- **T-Pose Reset**: Quickly reset characters to their default T-pose, aiding in animation rigging and debugging.
+- **StateMachineBehaviour Integration**: Uses `StateMachineBehaviour` to manage events tied to specific animation states.
+
+This system offers enhanced flexibility and control over Unity’s Animation Event system, particularly valuable for managing complex animation events in both runtime and editor-time workflows.
 
 ## YouTube
 
