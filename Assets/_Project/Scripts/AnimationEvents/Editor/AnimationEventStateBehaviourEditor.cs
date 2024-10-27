@@ -45,21 +45,65 @@ public class AnimationEventStateBehaviourEditor : Editor {
         AnimationMode.SampleAnimationClip(Selection.activeGameObject, previewClip, previewTime);
     }
 
-    bool Validate(AnimationEventStateBehaviour stateBehaviour, out string errorMessage) {
+    private ChildAnimatorState FindMatchingState(AnimatorStateMachine stateMachine, AnimationEventStateBehaviour stateBehaviour)
+    {
+            foreach (var state in stateMachine.states)
+            {
+                if (state.state.behaviours.Contains(stateBehaviour))
+                {
+                    return state;
+                }
+            }
+
+            foreach (var subStateMachine in stateMachine.stateMachines)
+            {
+                var matchingState = FindMatchingState(subStateMachine.stateMachine, stateBehaviour);
+                if (matchingState.state != null)
+                {
+                    return matchingState;
+                }
+            }
+
+            return new ChildAnimatorState();
+    }
+
+    bool Validate(AnimationEventStateBehaviour stateBehaviour, out string errorMessage)
+    {
         AnimatorController animatorController = GetValidAnimatorController(out errorMessage);
         if (animatorController == null) return false;
 
         ChildAnimatorState matchingState = animatorController.layers
-            .SelectMany(layer => layer.stateMachine.states)
-            .FirstOrDefault(state => state.state.behaviours.Contains(stateBehaviour));
-
-        previewClip = matchingState.state?.motion as AnimationClip;
-        if (previewClip == null) {
+            .Select(layer => FindMatchingState(layer.stateMachine, stateBehaviour))
+            .FirstOrDefault(state => state.state != null);
+    
+        previewClip = GetAnimationClipFromMotion(matchingState.state?.motion);
+        if (previewClip == null)
+        {
             errorMessage = "No valid AnimationClip found for the current state.";
             return false;
         }
 
         return true;
+    }
+    
+    private AnimationClip GetAnimationClipFromMotion(Motion motion)
+    {
+        if (motion is AnimationClip clip)
+        {
+            return clip;
+        }
+        else if (motion is BlendTree blendTree)
+        {
+            foreach (var child in blendTree.children)
+            {
+                var childClip = GetAnimationClipFromMotion(child.motion);
+                if (childClip != null)
+                {
+                    return childClip;
+                }
+            }
+        }
+        return null;
     }
 
     AnimatorController GetValidAnimatorController(out string errorMessage) {
