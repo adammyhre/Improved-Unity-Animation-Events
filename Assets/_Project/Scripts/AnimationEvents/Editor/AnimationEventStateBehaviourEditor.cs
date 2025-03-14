@@ -13,7 +13,7 @@ using UnityEditor.Animations;
 /// and handling animation events within the Unity editor. Enables users to preview animations and manage
 /// animation events directly in the editor.
 /// </summary>
-[CustomEditor(typeof(AnimationEventStateBehaviour))]
+[UnityEditor.CustomEditor(typeof(AnimationEventStateBehaviour))]
 public class AnimationEventStateBehaviourEditor : Editor {
     Motion previewClip;
     float previewTime;
@@ -277,4 +277,5 @@ public class AnimationEventStateBehaviourEditor : Editor {
         }
     }
 }
+
 #endif
