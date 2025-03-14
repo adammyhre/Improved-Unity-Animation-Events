@@ -1,18 +1,19 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using UnityEditor;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
 
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.Animations;
 /// <summary>
 /// Custom editor for the AnimationEventStateBehaviour class, providing a GUI for previewing animation states
 /// and handling animation events within the Unity editor. Enables users to preview animations and manage
 /// animation events directly in the editor.
 /// </summary>
-[CustomEditor(typeof(AnimationEventStateBehaviour))]
+[UnityEditor.CustomEditor(typeof(AnimationEventStateBehaviour))]
 public class AnimationEventStateBehaviourEditor : Editor {
     Motion previewClip;
     float previewTime;
@@ -276,3 +277,5 @@ public class AnimationEventStateBehaviourEditor : Editor {
         }
     }
 }
+
+#endif

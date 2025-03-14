@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -24,3 +25,4 @@ public class AnimationEventDrawer : PropertyDrawer {
         return EditorGUIUtility.singleLineHeight + EditorGUI.GetPropertyHeight(stateEventProperty) + 4;
     }
 }
+#endif
